@@ -15,7 +15,7 @@ let package = Package(
             targets: ["GaberExtensions"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-case-paths", from: "0.9.1"),
+//        .package(url: "https://github.com/pointfreeco/swift-case-paths", from: "0.9.1"),
         .package(url: "https://github.com/siteline/SwiftUI-Introspect", from: "0.1.4"),
     ],
     targets: [
@@ -24,7 +24,7 @@ let package = Package(
         .target(
             name: "GaberExtensions",
             dependencies: [
-                .product(name: "CasePaths", package: "swift-case-paths"),
+//                .product(name: "CasePaths", package: "swift-case-paths"),
                 .product(name: "Introspect", package: "SwiftUI-Introspect"),
             ]),
         .testTarget(
