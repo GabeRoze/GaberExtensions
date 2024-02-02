@@ -7,46 +7,47 @@ import UIKit
 
 // from https://stackoverflow.com/a/62785462
 extension View {
-	func configureNavigationBar(configure: @escaping (UINavigationController) -> Void) -> some View {
+	public func configureNavigationBar(configure: @escaping (UINavigationController) -> Void) -> some View {
 		modifier(NavigationConfigurationViewModifier(configure: configure))
 	}
 }
 
-struct NavigationConfigurationViewModifier: ViewModifier {
-	let configure: (UINavigationController) -> Void
+public struct NavigationConfigurationViewModifier: ViewModifier {
+    public let configure: (UINavigationController) -> Void
 
-	func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
 		content.background(NavigationConfigurator(configure: configure))
 	}
 }
 
 struct NavigationConfigurator: UIViewControllerRepresentable {
-	let configure: (UINavigationController) -> Void
+    public let configure: (UINavigationController) -> Void
 
-	func makeUIViewController(
+    public func makeUIViewController(
 			context: UIViewControllerRepresentableContext<NavigationConfigurator>
 	) -> NavigationConfigurationViewController {
 		NavigationConfigurationViewController(configure: configure)
 	}
 
-	func updateUIViewController(
+    public func updateUIViewController(
 			_ uiViewController: NavigationConfigurationViewController,
 			context: UIViewControllerRepresentableContext<NavigationConfigurator>
 	) { }
 }
 
 final class NavigationConfigurationViewController: UIViewController {
-	let configure: (UINavigationController) -> Void
+    public let configure: (UINavigationController) -> Void
 
-	init(configure: @escaping (UINavigationController) -> Void) {
+    public init(configure: @escaping (UINavigationController) -> Void) {
 		self.configure = configure
 		super.init(nibName: nil, bundle: nil)
 	}
 
-	required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
+    public
 	override
 	func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(_: animated)
@@ -56,6 +57,7 @@ final class NavigationConfigurationViewController: UIViewController {
 		}
 	}
 
+    public 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 
