@@ -38,7 +38,7 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
     ) { }
 }
 
-final class NavigationConfigurationViewController: UIViewController {
+public final class NavigationConfigurationViewController: UIViewController {
     public let configure: (UINavigationController) -> Void
     
     public init(configure: @escaping (UINavigationController) -> Void) {
