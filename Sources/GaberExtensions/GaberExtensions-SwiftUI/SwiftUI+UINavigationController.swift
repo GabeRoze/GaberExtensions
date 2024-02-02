@@ -16,7 +16,7 @@ extension View {
 }
 
 public struct NavigationConfigurationViewModifier: ViewModifier {
-    let configure: (UINavigationController) -> Void
+    public let configure: (UINavigationController) -> Void
     
     public func body(content: Content) -> some View {
         content.background(NavigationConfigurator(configure: configure))
@@ -24,24 +24,24 @@ public struct NavigationConfigurationViewModifier: ViewModifier {
 }
 
 struct NavigationConfigurator: UIViewControllerRepresentable {
-    let configure: (UINavigationController) -> Void
+    public let configure: (UINavigationController) -> Void
     
-    func makeUIViewController(
+    public func makeUIViewController(
         context: UIViewControllerRepresentableContext<NavigationConfigurator>
     ) -> NavigationConfigurationViewController {
         NavigationConfigurationViewController(configure: configure)
     }
     
-    func updateUIViewController(
+    public func updateUIViewController(
         _ uiViewController: NavigationConfigurationViewController,
         context: UIViewControllerRepresentableContext<NavigationConfigurator>
     ) { }
 }
 
 final class NavigationConfigurationViewController: UIViewController {
-    let configure: (UINavigationController) -> Void
+    public let configure: (UINavigationController) -> Void
     
-    init(configure: @escaping (UINavigationController) -> Void) {
+    public init(configure: @escaping (UINavigationController) -> Void) {
         self.configure = configure
         super.init(nibName: nil, bundle: nil)
     }
