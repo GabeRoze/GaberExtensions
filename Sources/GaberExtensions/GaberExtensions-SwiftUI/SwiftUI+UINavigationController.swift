@@ -17,7 +17,9 @@ extension View {
 
 public struct NavigationConfigurationViewModifier: ViewModifier {
     public let configure: (UINavigationController) -> Void
-    
+    public init(configure: @escaping (UINavigationController) -> Void) {
+        self.configure = configure
+    }
     public func body(content: Content) -> some View {
         content.background(NavigationConfigurator(configure: configure))
     }
@@ -38,7 +40,7 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
     ) { }
 }
 
-public final class NavigationConfigurationViewController: UIViewController {
+final class NavigationConfigurationViewController: UIViewController {
     public let configure: (UINavigationController) -> Void
     
     public init(configure: @escaping (UINavigationController) -> Void) {
