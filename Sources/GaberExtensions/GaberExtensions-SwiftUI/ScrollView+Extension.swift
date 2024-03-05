@@ -7,7 +7,7 @@
 // https://swiftwithmajid.com/2020/09/24/mastering-scrollview-in-swiftui/
 
 import SwiftUI
-import Introspect
+import SwiftUIIntrospect
 
 private struct ScrollOffsetPreferenceKey: PreferenceKey {
     static var defaultValue: CGPoint = .zero
@@ -100,10 +100,12 @@ public struct ScrollStatusByIntrospectModifier: ViewModifier {
                 self.delegate.didEndDragging = didEndDragging
             }
         // Support ScrollView and List at the same time.
-            .introspectScrollView { scrollView in
+            .introspect(.scrollView,
+                        on: .iOS(.v17)) { scrollView in
                 scrollView.delegate = delegate
             }
-            .introspectTableView { tableView in
+            .introspect(.table,
+                        on: .iOS(.v17)) { tableView in
                 tableView.delegate = delegate
             }
     }
